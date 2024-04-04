@@ -64,5 +64,31 @@ export class AuthService {
     return this.role === role;
   }
 
+  getUserId(): string {
+    return '1234567890';
+  }
+
+  getUserToken(): string {
+    return 'PLACEHOLDER_USER_TOKEN';
+  }
+
+  resetPassword(email: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+    // Call the server's reset password endpoint
+    this.httpClient.post('https://api.example.com/reset-password', {email})
+      .subscribe({
+        next: () => {
+          // Reset password successful
+          console.log('Password reset successful');
+          resolve();
+        },
+        error: (error) => {
+          console.error('Reset password error: ', error);
+          reject();
+        }
+      });
+    });
+  }
+
   constructor(private httpClient: HttpClient) { }
 }

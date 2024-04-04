@@ -3,10 +3,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/Authorization/auth.service';
+import { ResetPasswordDialogComponent } from './dialogs/reset-password-dialog/reset-password-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ import { AuthService } from '../../services/auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -64,5 +66,12 @@ export class LoginComponent {
     return this.loginData.valid;
   }
 
-  constructor(private router: Router, private authService: AuthService) {}
+  resetPassword() {
+    this.resetPassDialog.open(ResetPasswordDialogComponent, {
+      width: '25%',
+      height: '33%',
+    });
+  }
+
+  constructor(private router: Router, private authService: AuthService, public resetPassDialog: MatDialog) {}
 }

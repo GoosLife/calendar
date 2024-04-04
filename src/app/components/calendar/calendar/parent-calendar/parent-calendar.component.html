@@ -1,0 +1,30 @@
+<div class="parent-calendar-container">
+    <div class="calendar-container">
+        <h4>Kalender</h4>
+        <div class="calendar">
+            <div *ngFor="let week of [1,2,3,4]">
+                <div *ngFor="let day of [1,2,3,4,5,6,7]">
+                    <div class="gray-box" (click)="viewDay((week * day).toString())">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="add-entry-form">
+        <form [formGroup]="event">
+            <mat-form-field>
+                <input matInput placeholder="Titel" formControlName="title">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Beskrivelse" formControlName="description">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Starttidspunkt" formControlName="startTime">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Sluttidspunkt" formControlName="endTime">
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="add-event-button" (click)="addEvent()">Tilføj begivenhed</button>
+        </form>
+    </div>
+</div>
